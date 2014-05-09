@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h3>Invitations</h3>
+</div>
+<%= simple_form_for(:invitation, :url => email_multiple_invitations_path, :method => :put) do |f| %>
+  <p>There are currently <b><%= @invitations.count %> Invitations</b> and <b><%= @num_invitees %> Invitees</b> with <b><%= @num_attending %> people attending and <%= @num_not_attending %> people not attending</b></p>
+  <hr>
+  <%= f.input :filter, :collection => { "All invitations" => "all", "Not responded" => "not_responded", "Responded" => "responded", "Attending" => "attending", "Not attending" => "not_attending"}, :selected => "all", :input_html => { :class => "showing" }, :required => false %>
+  <div class="invitations_container">
+    <%= render "invitations" %>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <%= link_to 'New Invitation', new_invitation_path, :class => "btn" %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="span12">
+      <h4>Send an email to selected invitations</h4>
+      <%= f.input :email_type, :collection => (%w(invitation reminder custom).map { |x| [x.capitalize, x] }), :prompt => true %>
+      <div class="custom_email" style="display: none">
+        <%= f.input :email_subject %>
+        <%= f.input :email_body, :as => :text, :input_html => { :rows => 5, :class => "input-xxlarge" } %>
+      </div>
+      <%= f.button :submit, "Send", :class => "btn btn-success", :confirm => "Are you sure you want to email all of the selected invitations?" %>
+    </div>
+  </div>
+<% end %>

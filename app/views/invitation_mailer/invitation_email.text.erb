@@ -1,0 +1,3 @@
+<%= @invitation.name %>,
+
+<%= ENV['COUPLE_NAME'] %> are getting married on <%= ENV['WEDDING_DATE'] %> at <%= ENV['WEDDING_LOCATION'] %>. We would love it if you could join us on our special day. You can view your invitation and RSVP online here: <%= view_invitation_url(@invitation.code) %>

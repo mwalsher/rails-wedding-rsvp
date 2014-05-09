@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+    	body { 
+    		font-family: Georgia, Arial;
+    		font-size: 14px;
+    	}
+    </style>
+  </head>
+  <body>
+  	<p><%= @invitation.name %>,</p>
+  	<p>Thanks! We've received your RSVP. <% if @invitation.num_attending > 0 %>We look forward to seeing you at our wedding on August 17!<% else %>We're sorry to hear you can't make it but wish you all the best.<% end %></p>
+
+    <p>To confirm, here is your response:</p>
+
+  	<ul>
+      <% @invitation.invitees.each do |invitee| %>
+  		<li class="guest">
+  	  	<%= invitee.guest ? "Guest" : (invitee.first_name << " " << invitee.last_name) %> 
+  	   	<b><%= !invitee.attending.nil? ? RSVP_ANSWERS[invitee.attending] : "...?" %></b>
+  	 	</li>
+  		<% end %>
+  	</ul>
+
+    <% if @invitation.address.present? %>
+    <h4>Address</h4>
+    <p><%= @invitation.address %></p>
+    <% end %>
+
+    <% if @invitation.requests.present? %>
+    <h4>Special Requests</h4>
+    <p><%= @invitation.requests %></p>
+    <% end %>
+
+    <% if @invitation.notes.present? %>
+    <h4>Message</h4>
+    <p><%= @invitation.notes %></p>
+    <% end %>
+
+    <p>If you need to make a change, <%= link_to "click here", rsvp_url(@invitation.code) %>.
+
+  </body>
+</html>

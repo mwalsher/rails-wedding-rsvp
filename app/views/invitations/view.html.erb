@@ -1,0 +1,194 @@
+<%= image_tag(image_path("top-brace.png"), :id => "top-brace", :class => "curly-brace") %>
+<%= image_tag(image_path("card.png"), :id => "card") %>
+<%= image_tag(image_path("bottom-brace.png"), :id => "bottom-brace", :class => "curly-brace") %>
+
+<div class="holder">
+
+	<!--<div class="spacer">
+		<% if @invitation.responded_at.nil? %>
+			<span class="rsvp-by">Kindly reply by May 1, 2013</span>
+		<% end %>
+		<%= link_to(((@invitation.responded_at.nil? ? "Click here to RSVP " : "Click here to change your attendance ") << "<i class=\"icon-circle-arrow-right icon-white\"></i>").html_safe, rsvp_path(@invitation.code), :class => "btn btn-success btn-large") %>
+	</div>-->
+
+	<div class="section spacer">
+		<% days_to_go = (DateTime.parse(ENV['WEDDING_DATE']_DB) - DateTime.now).to_i %>
+
+		<% if days_to_go > 0 %>
+			<h1 style="margin-top: 15px">Only <%= days_to_go %> days to go until the wedding!</h1>
+		<% elsif days_to_go == 0 %>
+			<h1 style="margin-top: 15px">Wedding day!!!</h1>
+		<% else %>
+			<h1 style="margin-top: 15px"><%= ENV['COUPLE_NAME'] %> were married <%= -days_to_go %> days ago!</h1>
+		<% end %>
+
+		<br><br><h2>June 23 Update</h2>
+
+		<p><b>1. Ceremony time and itinerary change</b></p>
+
+		<p>The ceremony will now be held at 3:00 pm. This will allow everyone to have a break and cool down before the reception begins. Cocktail hour will now be held on the Vineyard Patio at 6:00 pm and dinner at 7:30 pm, when the sun is lower and it begins to cool down. </p>
+
+		<p>We've updated the itinerary on the invitation accordingly.</p>
+
+		<p><b>2. Attire</b></p>
+
+		<p>After visiting Spirit Ridge, we've discovered that the Lavender Rooftop (ceremony location) has a deck-like wooden floor with small spaces between boards. As such, we don't recommend wearing shoes that have a thin heel, as you might get stuck and hurt yourself. </p>
+
+		<p>Also, we'd like to emphasize that it's going to be roasting hot, so please dress appropriately. Dress shorts and shirt are fine, provided that they are not Hawaiian-themed and look classy :)</p>
+
+		<p><b>3. Gift Registry</b></p>
+
+		<p>Some of you have asked if we've set up a gift registry. We haven't done so, as we are fortunate enough to have all of the staple household items we need already and have limited room to bring things back to Vancouver with us. Your presence at our wedding is present enough, but if we are honored with a gift from you, one that is physically small would be really appreciated. Contributions towards our honeymoon would really help, or gift cards for the Bay would be great. But of course, you're welcome to give anything you'd like!</p>
+
+		<p><b>4. Don't forget to book your accommodation</b></p>
+
+		<p>If you haven't done so already, don't forget to book your room! From now on, rooms are only available on a space-available basis and will book up fast. Also, the last day to get the discounted group rate is August 1.</p>
+
+		<p>If you'd like to find someone to share a room or ride with, <a href="mailto:hello@brielleandmike.com">send us an email</a> and we'll help coordinate with others.</p>
+
+		<p>We look forward to seeing you all at our wedding!</p>
+	</div>
+
+	<div class="section spacer">
+		<h2>About Spirit Ridge Vineyard Resort &amp; Spa</h2>
+
+		<p><a href="http://www.spiritridge.ca" target="_blank">Spirit Ridge</a> is a beautiful resort located in Osoyoos, BC. Surrounded by the rolling vineyards of the South Okanagan wine country and overlooking Osoyoos Lake. Spirit Ridge offers a great wedding atmosphere. The resort is adjacent to the popular Nk'Mip Cellars Winery and features an on-site spa, golf course, pool, and a variety of restaurants.</p>
+
+		<p>We chose Spirit Ridge because we wanted to have an all-outdoor, summer wedding in the Okanagan. What better place than Osoyoos, home of the warmest lake in Canada! The resort also features luxurious condo-style accommodations, making it the perfect summer getaway spot for our guests.</p>
+
+		<%= image_tag(image_path("spirit-ridge1.jpg"), :class => "photo") %><%= image_tag(image_path("spirit-ridge2.jpg"), :class => "photo last") %><%= image_tag(image_path("spirit-ridge3.jpg"), :class => "photo") %><%= image_tag(image_path("spirit-ridge4.jpg"), :class => "photo last") %>
+	</div>
+
+	<div class="section spacer">
+		<h2>Accommodations</h2>
+		<p>We have a block of rooms set aside at Spirit Ridge and have been given a discounted group rate for our guests. We encourage you to coordinate sharing a two bedroom unit with another family that will be attending the wedding to save costs. All rooms have full gourmet kitchens and all two-bedroom units have separate bathrooms.</p>
+
+		<p>Please reserve your room as soon as possible. Reservations can be made online at <a href="http://www.spiritridge.ca" target="_blank">www.spiritridge.ca</a> (enter the dates, click "Book Now", then enter Special Code "WALSH" to get the group rate) or by calling 1-877-313-9463 (mention you're with the "McAmmond and Walsh Wedding Party" for the group rate). An overview of the available room types is below:</p>
+		<table class="information">
+			<tr>
+				<th style="width: 18%">Room Type</th>
+				<th style="">Description</th>
+				<th style="width: 15%">Group Rate</th>
+			</tr>
+			<tr>
+				<td>One-Bedroom Courtyard Side Suite</td>
+				<td>This approximately 595 sq ft suite has two queen beds or one king bed in the bedroom. Living/dining room area includes a pullout sofa and a balcony or patio with BBQ. Features a full gourmet kitchen.</td>
+				<td>$225/night</td>
+			</tr>
+			<tr>
+				<td>One-Bedroom Vineyard View Suite</td>
+				<td>This approximately 595 sq ft suite has two queen beds in the bedroom. Living/dining room area includes a pullout sofa and a balcony or patio with BBQ. Features a full gourmet kitchen.</td>
+				<td>$245/night</td>
+			</tr>
+			<tr>
+				<td>One-Bedroom Corner King Suite</td>
+				<td>Relax to the comfort of a fireplace in front of your king bed. This approximately 595 sq ft suite includes a full gourmet kitchen, living/dining room area with pull out sofa, and a BBQ on your balcony</td>
+				<td>$255/night</td>
+			</tr>
+			<tr>
+				<td>One-Bedroom Villa</td>
+				<td>This approximately 811 sq ft Villa includes two queen beds in the bedroom with a pull out sofa in the living room. Features a full gourmet kitchen, a living/dining room area with a balcony or patio with BBQ, and a stacking washer/dryer.</td>
+				<td>$285/night</td>
+			</tr>
+			<tr>
+				<td>Two-Bedroom Suite</td>
+				<td>This two bedroom, two bathroom suite is between 938 and 1126 sq ft with a king bed in the first bedroom and one king or two queen beds in the second bedroom. Living/dining room area includes pull out sofa and a balcony or patio with BBQ. Suite includes a full gourmet kitchen.</td>
+				<td>$285/night</td>
+			</tr>
+			<tr>
+				<td>Two-Bedroom Villa</td>
+				<td>This two bedroom, two bathroom Villa is approximatley 977 sq ft with one king bed in the master bedroom and two queen beds in the second bedroom. Includes a full gourmet kitchen, a stacking washer and dryer, and a living/dining room area with a balcony or patio with BBQ.</td>
+				<td>$345/night</td>
+			</tr>
+		</table>
+
+		<p>Other notes from Spirit Ridge:</p>
+
+		<ul class="information">
+			<li>The discounted room rates require a minimum two night stay. [We will be staying at Spririt Ridge from Friday, August 16th until Sunday, August 18th, but you're welcome to stay longer. Osoyoos is a great vacation spot.]</li>
+			<li>All rooms have a Queen-sized pull-out sofa in the living room</li>
+			<li>One-bedroom units are based on 1-2 adults; two-bedroom units are based on 1-4 adults. Additional people are $25/night. [Again, we recommend that you try and bunk up with another family in a two-bedroom unit to save costs!]</li>
+		</ul>
+
+		<p>If you prefer to stay somewhere less expensive, there are plenty of other <a href="http://www.destinationosoyoos.com/visit-osoyoos/accommodations/hotels-resorts" target="_blank">hotels</a>, <a href="http://www.destinationosoyoos.com/visit-osoyoos/accommodations/bed-breakfasts" target="_blank">bed &amp; breakfasts</a>, and even <a href="http://www.destinationosoyoos.com/visit-osoyoos/accommodations/campgrounds" target="_blank">campgrounds</a> in Osoyoos!</p>
+
+	</div>
+
+	<div class="section spacer">
+		<h2>Location</h2>
+		<p>Osoyoos is located in the South Okanagan (about 1.5 hours south of Kelowna).</p>
+
+		<p><b>From Vancouver area &mdash;</b>  Take Hwy. 1 East (The Trans-Canada) to Hope. Follow Hwy. 3 East to Osoyoos. Once in Osoyoos, Hwy 3 turns into Main Street. Continue on Main Street / Hwy 3, turn left on 45th Street and follow the signs to Spirit Ridge Vineyard Resort &amp; Spa.</p>
+
+		<p><b>From Calgary area &mdash;</b>  Take Hwy. 1 West (The Trans-Canada) to Sicamous and follow Hwy. 97A South towards Vernon passing through Kelowna and Penticton and continue south on Hwy. 97 until you reach Osoyoos. Once in Osoyoos, drive east on Main Street / Hwy 3, turn left on 45th Street and follow the signs to Spirit Ridge Vineyard Resort &amp; Spa.</p>
+
+		<p><b>From Kelowna area &mdash;</b> Drive south on Hwy. 97 and follow Hwy. 3 East to Osoyoos. At Osoyoos, turn left on Hwy. 3/Main Street. Continue on Main Street / Hwy 3, turn left on 45th Street and follow the signs to Spirit Ridge Vineyard Resort &amp; Spa.</p>
+
+		<a class="btn btn-success btn-large" href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Spirit+Ridge+Vineyard+Resort+%26+Spa,+Rancher+Creek+Road,+Osoyoos,+BC,+Canada&amp;aq=0&amp;oq=spirit+ridge+vine&amp;sll=49.257735,-123.123904&amp;sspn=0.152145,0.306931&amp;ie=UTF8&amp;hq=Spirit+Ridge+Vineyard+Resort+%26+Spa,+Rancher+Creek+Road,+Osoyoos,+BC,+Canada&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=49.040794,-119.434433&amp;spn=0.108027,0.219727" target="_blank">Click here to get directions</a>
+
+		<!-- <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Spirit+Ridge+Vineyard+Resort+%26+Spa&amp;hl=en&amp;fb=1&amp;hq=Spirit+Ridge+Vineyard+Resort+%26+Spa&amp;cid=0,0,15176003852669857469&amp;t=m&amp;ie=UTF8&amp;hnear=&amp;z=12&amp;iwloc=A&amp;output=embed"></iframe> -->
+	</div>
+
+	<div class="section spacer" id="itinerary">
+		<h2>Itinerary</h2>
+		<p>The wedding will be held at Spirit Ridge Vineyard Resort &amp; Spa on Saturday, August 17th, 2013. Here's roughly how it will go down:</p>
+		<table class="information">
+			<tr>
+				<th style="width: 100px">Time</th>
+				<th>Who/what/where/when</th>
+			</tr>
+			<tr>
+				<th>3:00 pm</th>
+				<td>Ceremony held on the Lavender Rooftop</td>
+			</tr>
+			<tr>
+				<th>6:00 pm</th>
+				<td>Drinks and hors d'oeuvres on the Vineyard Patio</td>
+			</tr>
+			<tr>
+				<th>7:30 pm</th>
+				<td>Dinner is served.</td>
+			</tr>
+			<tr>
+				<th>9:00 pm</th>
+				<td>First dance, followed by party time!</td>
+			</tr>
+			<tr>
+				<th>11:30 pm</th>
+				<td>Last call for alcohol</td>
+			</tr>
+			<tr>
+				<th>12:00 am</th>
+				<td>Party's over, but the fun has just begun!</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="section spacer">
+		<h2>Attire</h2>
+		<p>Given we'll be in the desert in the middle of August, it's going to be hot! We'd love for you all to look your best, but please dress appropriately for the warm weather.</p>
+	</div>
+
+	<div class="section spacer">
+		<h2>How do I RSVP?</h2>
+		<% if @invitation.responded_at.nil? %>
+			<p>To RSVP, simply click the big green button at the bottom of this page and follow the instructions from there.</p>
+		<% else %>
+			<p>It looks like you (or someone else on your invitation) has already RSVP'd, so you're all set!</p>
+		<% end %>
+	</div>
+
+	<div class="section spacer">
+		<h2>Questions?</h2>
+		<p>If you have any questions, you can send us an email at <a href="<%= ENV['RSVP_NOTIFICATION_ADDRESS'] %>"><%= ENV['RSVP_NOTIFICATION_ADDRESS']%></a>.</p>
+	</div>
+
+	<div class="spacer" style="margin-top: 70px !important">
+		<% if @invitation.responded_at.nil? %>
+			<span class="rsvp-by">Kindly reply by <%= ENV['RESPOND_BY_DATE'] %></span>
+		<% else %>
+			<span class="rsvp-by">Your RSVP has already been sent!</span>
+		<% end %>
+		<%= link_to(((@invitation.responded_at.nil? ? "Click here to RSVP " : "Click here to change your attendance ") << "<i class=\"icon-circle-arrow-right icon-white\"></i>").html_safe, rsvp_path(@invitation.code), :class => "btn btn-success btn-large") %>
+	</div>
+</div>

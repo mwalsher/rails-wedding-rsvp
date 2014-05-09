@@ -1,0 +1,29 @@
+<%= @invitation.name %>,
+
+Thanks! We've received your RSVP. <% if @invitation.num_attending > 0 %>We look forward to seeing you at our wedding on August 17!<% else %>We're sorry to hear you can't make it but wish you all the best.<% end %>
+
+To confirm, here is your response:
+
+<% @invitation.invitees.each do |invitee| %>
+<%= invitee.guest ? "Guest" : (invitee.first_name << " " << invitee.last_name) %> <%= !invitee.attending.nil? ? RSVP_ANSWERS[invitee.attending] : "...?" %>
+<% end %>
+<% if @invitation.address.present? %>
+
+Mailing Address
+
+<%= @invitation.address %>
+<% end %>
+<% if @invitation.requests.present? %>
+
+Special Requests
+
+<%= @invitation.requests %>
+<% end %>
+<% if @invitation.notes.present? %>
+
+Message
+
+<%= @invitation.notes %>
+<% end %>
+
+If you need to make a change, you can do so here: <%= rsvp_url(@invitation.code) %>

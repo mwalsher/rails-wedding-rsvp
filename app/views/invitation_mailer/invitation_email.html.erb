@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      body {
+        font-family: Georgia, Arial;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><%= @invitation.name %>,</p>
+    <p>
+      <%= ENV['COUPLE_NAME'] %> are getting married on <%= ENV['WEDDING_DATE'] %> at <%= ENV['WEDDING_LOCATION'] %>. We would love it if you could join us on our special day. <%= link_to "Click here to view your invitation", view_invitation_url(@invitation.code) %> where you can RSVP conveniently online.
+    </p>
+    <br>
+    <p><%= link_to(image_tag(asset_path("envelope-small.jpg")), view_invitation_url(@invitation.code)) %></p>
+    <p>(if you can't see the invitation picture above, click the "Display Images" (or similar) button in your email program)</p>
+    <%= image_tag(track_invitation_url(@invitation.code)) %>
+  </body>
+</html>

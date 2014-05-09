@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      body {
+        font-family: Georgia, Arial;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><%= @invitation.name %>,</p>
+    <p>
+      This is a friendly reminder to RSVP for <%= ENV['COUPLE_NAME'] %>'s wedding. Please respond as soon as possible so we can plan accordingly.
+    </p>
+    <p>
+      To view your invitation again, <%= link_to "click here", view_invitation_url(@invitation.code) %>.
+    </p>
+    <p>
+      To RSVP now, <%= link_to "click here", rsvp_url(@invitation.code) %>.
+    </p>
+    <p>
+      Thanks!
+    </p>
+    <p>
+      <%= ENV['COUPLE_NAME'] %>
+    </p>
+    <%= image_tag(track_invitation_url(@invitation.code)) %>
+  </body>
+</html>

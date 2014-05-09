@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      body {
+        font-family: Georgia, Arial;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Hi <%= @invitation.name %>,</p>
+    <%= @body.html_safe %>
+    <%= image_tag(track_invitation_url(@invitation.code)) %>
+    <p><%= ENV['COUPLE_NAME'] %></p>
+    <p>---</p>
+    <p>
+      To view your invitation again, <%= link_to "click here", view_invitation_url(@invitation.code) %>.
+    </p>
+  </body>
+</html>

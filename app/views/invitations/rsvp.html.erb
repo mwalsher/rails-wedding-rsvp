@@ -1,0 +1,55 @@
+<script type="text/javascript">
+	var rsvp_attending_values = <%= RSVP_ATTENDING_VALUES.to_json %>;
+	var rsvp_mean_values = <%= RSVP_MEAN_VALUES %>;
+</script>
+
+<% # Uses ActiveModel::Dirty for magic _was method to get value before change
+   if !@invitation.responded_at_was.nil? %>
+	<div class="alert">
+		Your RSVP has already been submitted. If you are changing your attendance, please do so before June 1, 2013
+	</div>
+<% end %>
+
+<div class="holder">
+	<h2 style="margin-bottom: 0.5em"><%= @invitation.name %>,</h2>
+	<h2>Please RSVP by filling out the form below</h2>
+	<p class="spacer text-center">
+		<b><%= ENV['COUPLE_NAME'] %></b><br>
+		<b><%= ENV['WEDDING_DATE'] %></b><br>
+		<!-- <b>Spirit Ridge Vineyard Resort &amp; Spa</b><br> -->
+		<b>Osoyoos, BC</b>
+	</p>
+
+	<%= simple_form_for @invitation, :url => rsvp_path(@invitation.code), :method => :put do |f| %>
+
+		<div class="spacer">
+			<h5>Please select an attendance option<% if @invitation.invitees.count > 1 %> for each guest<% end %>:</h5>
+			<table class="guests">
+				<%= f.simple_fields_for :invitees do |invitee_form| %>
+					<tr class="guest<%= !invitee_form.object.errors[:attending].empty? ? " error" : "" %>">
+						<!-- <td class="text-right name"> -->
+						<td class="text-left attendance">
+							<%= !invitee_form.object.guest ? invitee_form.object.first_name : "My guest" %>
+							<%= invitee_form.input_field :attending, :as => :select, :class => "rsvp_status", :collection => RSVP_ANSWERS.collect { |v,i| [v,RSVP_ANSWERS.index(v)] }, :prompt => "- please select -" %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+
+		<div class="spacer address">
+			<%= f.input :address, :label_html => { :class => "large-text" }, :error => false, :input_html => { :class => "input-xlarge large-text", :rows => 4 }, :placeholder => "Your address here", :label => "Please provide your mailing address" %>
+		</div>
+
+		<div class="spacer">
+			<%= f.input :requests, :label_html => { :class => "large-text" }, :input_html => { :class => "input-xxlarge large-text", :rows => 4 }, :placeholder => "Enter your special requests here (optional)", :label => "Special requests (e.g. food allergies)" %>
+		</div>
+
+		<div class="spacer">
+			<%= f.input :notes, :label_html => { :class => "large-text" }, :input_html => { :class => "input-xxlarge large-text", :rows => 4 }, :placeholder => "Enter your message here (optional)", :label => "Send us a message (optional)" %>
+		</div>
+
+		<div class="cta spacer">
+			<%= f.button :submit, "Click here to send!", :class => "btn btn-success btn-large" %>
+		</div>
+	<% end %>
+</div>

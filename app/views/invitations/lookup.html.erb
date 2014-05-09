@@ -1,0 +1,25 @@
+<h1><%= ENV['COUPLE_NAME'] %> are tying the knot!</h1>
+
+<% days_to_go = (DateTime.parse(ENV['WEDDING_DATE_PARSABLE']) - DateTime.now).to_i %>
+
+<% if days_to_go > 0 %>
+	<h2 style="">Only <%= days_to_go %> days to go until the wedding!</h2>
+<% elsif days_to_go == 0 %>
+	<h3 style="">Wedding day!!!</h3>
+<% else %>
+	<h3 style=""><%= ENV['COUPLE_NAME'] %> were married <%= -days_to_go %> days ago!</h3>
+<% end %>
+
+<div class="search">
+	<%= simple_form_for :invitee, :url => lookup_invitation_url, :method => :post do |f| %>
+		<% if @error_message %>
+			<div class="alert alert-block alert-error">
+				<b><%= @error_message %></b>
+			</div>
+		<% end %>
+		<%= f.input_field :first_name, :placeholder => "First name" %><%= f.input_field :last_name, :placeholder => "Last name" %><%= f.button :submit, "Find my invitation", :class => "btn btn-success btn-large" %>
+	<% end %>
+</div>
+
+<!-- <div class="cover2"></div> -->
+<%= image_tag(image_path("proposal2.jpg"), :id => "cover") %>

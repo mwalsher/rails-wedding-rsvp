@@ -1,0 +1,26 @@
+<div class="holder">
+	<% if @invitation.num_attending > 0 %>
+		<h2>Woohoo! We look forward to seeing you in August!!</h2>
+	<% else %>
+		<h2>Thanks for your response and we're sorry you can't make it</h2>
+	<% end %>
+		
+	<div class="spacer">
+		<table class="guests">
+			<% @invitation.invitees.each do |invitee| %>
+			<tr>
+				<!-- <td class="name"></td> -->
+				<td class="guest">
+			  		<%= invitee.guest ? "Your guest" : (invitee.first_name << " " << invitee.last_name) %> 
+			      	<b><%= !invitee.attending.nil? ? RSVP_ANSWERS[invitee.attending] : "...?" %></b>
+			  	</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+
+	<div class="spacer">
+		<%= link_to "Click here to go back to the invitation", view_invitation_path(@invitation.code), :class => "btn btn-success" %>
+	</div>
+
+</div>

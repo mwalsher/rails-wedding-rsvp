@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+    	body { 
+    		font-family: Arial;
+    		font-size: 14px;
+    	}
+    </style>
+  </head>
+  <body>
+  	<p>Response received from <%= @invitation.name %>. Of the <%= @invitation.invitees.count %> invitees, <b><%= @invitation.num_attending %> are attending.</b></p>
+  	<h4>Attendance</h4>
+  	<ul>
+      <% @invitation.invitees.each do |invitee| %>
+  		<li class="guest">
+  	  	<%= invitee.guest ? "Guest" : (invitee.first_name << " " << invitee.last_name) %> 
+  	   	<b><%= !invitee.attending.nil? ? RSVP_ANSWERS[invitee.attending] : "...?" %></b>
+  	 	</li>
+  		<% end %>
+  	</ul>
+
+    <% if @invitation.requests.present? %>
+    <h4>Special Requests</h4>
+    <p><%= @invitation.requests %></p>
+    <% end %>
+
+    <% if @invitation.notes.present? %>
+    <h4>Message</h4>
+    <p><%= @invitation.notes %></p>
+    <% end %>
+
+    <% if @invitation.address.present? %>
+    <h4>Mailing Address</h4>
+    <p><%= @invitation.address %></p>
+    <% end %>
+  </body>
+</html>

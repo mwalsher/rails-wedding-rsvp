@@ -1,0 +1,36 @@
+# Add account credentials and API keys here.
+# See http://railsapps.github.com/rails-environment-variables.html
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME: Your_Gmail_Username
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+# Add application configuration variables here, as shown below.
+#
+ADMIN_NAME: First User
+ADMIN_EMAIL: user@example.com
+ADMIN_PASSWORD: changeme
+ROLES: [admin, user]
+
+# twilio-ruby was included but I don't believe I ever ended up using it for anything (doesn't appear to be)
+TWILIO_ACCOUNT_SID: YOUR_TWILIO_ACCOUNT
+TWILIO_AUTH_TOKEN: YOUR_TWILIIO_AUTH_TOKEN
+
+APP_DOMAIN: yourdomain.com
+
+SMTP_USERNAME: YOUR_SENDGRID_USERNAME
+SMTP_PASSWORD: YOUR_SENDGRID_PASSWORD
+SMTP_DOMAIN: YOUR_SENDGRID_DOMAIN
+SMTP_ADDRESS: YOUR_SENDGRID_HOST_ADDRESS
+
+# run rake secret
+SECRET_TOKEN: YOUR_SECRET_TOKEN
+
+WEDDING_TITLE: "Brielle and Mike's Summer 2013 Wedding"
+WEDDING_DATE: "August 17, 2013"
+WEDDING_DATE_PARSABLE: "2013-08-17"
+RESPOND_BY_DATE: "May 15, 2013"
+WEDDING_LOCATION: "Spirit Ridge Vineyard Resort and Spa"
+COUPLE_NAME: "Brielle and Mike"
+RSVP_EMAIL_FROM_ADDRESS: "no-reply@yourdomain.com"
+RSVP_NOTIFICATION_ADDRESS: "hello@yourdomain.com"

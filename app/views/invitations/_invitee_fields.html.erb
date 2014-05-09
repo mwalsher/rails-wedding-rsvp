@@ -1,0 +1,9 @@
+<li class="nested-fields<%= !f.object.errors.empty? ? " error" : "" %>">
+	<%= f.input :guest, :as => :boolean, :label => false, :inline_label => "Guest?", :input_html => { :class => "guest" } %>
+	<div class="name"<% if f.object.guest %> style="display:none"<% end %>>
+		<%= f.input_field :first_name, :placeholder => "First name" %> 	
+		<%= f.input_field :last_name, :placeholder => "Last name" %><br>
+	</div>
+	<%= link_to_remove_association "Remove", f, :class => "btn btn-danger btn-mini" %>
+	<hr>
+</li>

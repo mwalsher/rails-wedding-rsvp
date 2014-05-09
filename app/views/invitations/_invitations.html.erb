@@ -1,0 +1,44 @@
+<table id="invitations" class="table table-striped table-condensed">
+    <tr>
+      <th><%= check_box_tag :check_all, 1, false, :class => "check_all" %></th>
+      <th><%= sortable :name %></th>
+      <th><%= sortable :code %></th>
+      <th><%= sortable :sent_at, "Last Emailed" %></th>
+      <th><%= sortable :opened_at, "Email Opened" %></th>
+      <th><%= sortable :last_viewed_at, "Last Viewed" %></th>
+      <!-- <th>Phoned In</th> -->
+      <th><%= sortable :responded_at, "Responded" %></th>
+      <th>#</th>
+      <th>Y</th>
+      <th>N</th>
+      <th>Actions</th>
+    </tr>
+
+  <% @invitations.each do |invitation| %>
+    <tr>
+      <td><%= check_box_tag "invitation_ids[]", invitation.id, false, :id => "invitation_#{invitation.id}" %></td>
+    	<td><%= link_to invitation.name, invitation_path(invitation) %></td>
+      <td><%= invitation.code %></td>
+      <td><%= link_to (!invitation.sent_at.nil? ? invitation.sent_at.to_formatted_s(:short) : "&mdash;".html_safe), invitation_path(invitation) %></td>
+      <td><%= link_to (!invitation.opened_at.nil? ? invitation.opened_at.to_formatted_s(:short) : "&mdash;".html_safe), invitation_path(invitation) %></td>
+      <td><%= link_to (!invitation.last_viewed_at.nil? ? invitation.last_viewed_at.to_formatted_s(:short) : "&mdash;".html_safe), invitation_path(invitation) %></td>
+      <!--<td><%= link_to (!invitation.phoned_in_at.nil? ? invitation.phoned_in_at.to_formatted_s(:short) : "&mdash;".html_safe), invitation_path(invitation) %></td>-->
+      <td><%= link_to (!invitation.responded_at.nil? ? invitation.responded_at.to_formatted_s(:short) : "&mdash;".html_safe), invitation_path(invitation) %></td>
+    	<td><%= link_to invitation.invitees.count, invitation_path(invitation) %></td>
+      <td><%= link_to !invitation.responded_at.nil? ? invitation.num_attending : "&mdash;".html_safe, invitation_path(invitation) %></td>
+      <td><%= link_to !invitation.responded_at.nil? ? invitation.num_not_attending : "&mdash;".html_safe, invitation_path(invitation) %></td>
+      <td>
+        <%= link_to 'Preview', view_invitation_path(invitation.code), :class => "btn btn-mini" %>
+        <%= link_to 'Send', deliver_invitation_path(invitation), :class => "btn btn-mini btn-success", :confirm => "Are you sure you want to send this?" %>
+        <%= link_to 'Remind', remind_invitation_path(invitation), :disabled => !invitation.responded_at.nil?, :class => "btn btn-mini btn-success", :confirm => "Are you sure you want to send this?" %>
+      	<%= link_to 'View', invitation, :class => "btn btn-mini" %>
+      	<%= link_to 'Edit', edit_invitation_path(invitation), :class => "btn btn-mini" %> 
+      	<%= link_to 'Delete', invitation, method: :delete, data: { confirm: 'Are you sure you want to delete this?' }, :class => "btn btn-danger btn-mini" %>
+     	</td>
+    </tr>
+  <% end %>
+  <tr>
+      <th><%= check_box_tag :check_all_bottom, 1, false, :class => "check_all" %></th>
+      <th colspan="10"></th>
+    </tr>
+  </table>

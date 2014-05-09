@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h3>Invitation</h3>
+</div>
+<p><span class="field-label">Code:</span> <%= @invitation.code %></p>
+<p><span class="field-label">Group/family name:</span> <%= @invitation.name %></p>
+<p><span class="field-label">Email(s):</span> <%= @invitation.email %></p>
+<p><span class="field-label">Sent:</span> <%= (!@invitation.sent_at.nil? ? @invitation.sent_at.to_formatted_s(:long_ordinal) : "&mdash;".html_safe) %></p>
+<p><span class="field-label">Opened:</span> <%= (!@invitation.opened_at.nil? ? @invitation.opened_at.to_formatted_s(:long_ordinal) : "&mdash;".html_safe) %></p>
+<p><span class="field-label">Last Viewed: </span> <%= (!@invitation.last_viewed_at.nil? ? @invitation.last_viewed_at.to_formatted_s(:long_ordinal) : "&mdash;".html_safe) %></p>
+<p><span class="field-label">Responded: </span> <%= (!@invitation.responded_at.nil? ? @invitation.responded_at.to_formatted_s(:long_ordinal) : "&mdash;".html_safe) %></p>
+<p><span class="field-label">Invitees:</span> <%= @invitation.invitees.count == 0 ? "None" : "" %></p>
+<ul>
+  <% @invitation.invitees.each do |invitee| %>
+  	<li>
+  		<%= invitee.guest ? "Guest" : (invitee.first_name << " " << invitee.last_name) %> 
+      <b><%= !invitee.attending.nil? ? RSVP_ANSWERS[invitee.attending] : "...?" %></b>
+  	</li>
+  <% end %>
+</ul>
+<p><span class="field-label">Special Requests:</span> <%= @invitation.requests.blank? ? "&mdash;".html_safe : @invitation.requests %></p>
+<p><span class="field-label">Address:</span> <%= @invitation.address.blank? ? "&mdash;".html_safe : @invitation.address %></p>
+<p><span class="field-label">Note:</span> <%= @invitation.notes.blank? ? "&mdash;".html_safe : @invitation.notes %></p>
+
+<div class="form-actions">
+	<%= link_to 'Edit', edit_invitation_path(@invitation), :class => "btn btn-primary" %>
+	<%= link_to 'Back', invitations_path, :class => "btn" %>
+</div>

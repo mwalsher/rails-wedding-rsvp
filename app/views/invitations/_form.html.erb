@@ -1,0 +1,23 @@
+<%= simple_form_for(@invitation) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <% if params[:action] != "new" %>
+    <%= f.input :code, :as => :string, :disabled => true %>
+    <% end %>
+  	<%= f.input :name, :label => "Group/family name", :hint => "e.g. Smith family" %>
+  	<%= f.input :email, :label => "Email address(es)", :hint => "Multiple email addresses should be comma separated" %>
+  	
+  	<h3 style="margin-top: 30px">Invitees</h3>
+	  	<ul id="invitees-list" class="unstyled">
+	  		<%= f.simple_fields_for :invitees do |invitee_form| %>
+	  			<%= render "invitee_fields", :f => invitee_form %>
+	  		<% end %>
+	 	</ul>
+	 	<%= link_to_add_association "Add Invitee", f, :invitees, { :class => "btn btn-small", "data-association-insertion-node" => "#invitees-list", "data-association-insertion-method" => "append" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+<% end %>
